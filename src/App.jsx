@@ -2,8 +2,8 @@ import React from 'react'
 import "./App.scss"
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Welcome from './pages/Welcome/Welcome'
-import Order from './pages/order/Order'
-import Home from './pages/home/Home'
+import Order from './pages/Order/Order'
+import Home from './pages/Home/Home'
 import Detail from './pages/Detail/Detail'
 const App = () => {
   return (
