@@ -1,21 +1,25 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Sora";
 }
-.container{
+
+.container {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
 }
-a{
+
+a {
     text-decoration: none;
     gap: 40px;
     color: black;
 
 }
-:root{
-    --himnakan:#C67C4E;
---background:#F9F9F9;
+
+:root {
+   
+    --himnakan: #C67C4E;
+    --background: #F9F9F9;
 }

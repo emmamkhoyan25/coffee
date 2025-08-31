@@ -1,56 +1,94 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import styles from "./Login.module.scss"
-const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+import React, { useState } from 'react';
+import styles from './Login.module.scss';
 
-  const onSubmit = (data) => {
-    console.log(data);
+const Login = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    security: '',
+    remember: false,
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+   
   };
 
   return (
-    <form className="container" onSubmit={handleSubmit(onSubmit)}>
-      <label>Name</label>
-      <input
-        type="text"
-        {...register("name", { required: "You must fill in Name" })}
-        className={errors.name ? "input input-error" : "input"}
-        placeholder="Enter your name"
-      />
-      {errors.name && <p className="error-message">{errors.name.message}</p>}
+    <div className={styles.loginWrapper}>
+      <form className={styles.loginBox} onSubmit={handleSubmit}>
+        <h2 className={styles.title}>Sign in to Coffee</h2>
 
-      <label>Surname</label>
-      <input
-        type="text"
-        {...register("surname", { required: "You must fill in Surname" })}
-        className={errors.surname ? "input input-error" : "input"}
-        placeholder="Enter your surname"
-      />
-      {errors.surname && <p className="error-message">{errors.surname.message}</p>}
+        <div className={styles.inputGroup}>
+          <label>Full Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="e.g. Aram Aramyan"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <label>Phone Number</label>
-      <input
-        type="tel"
-        {...register("phone", {
-          required: "You must fill in Phone Number",
-          pattern: {
-            value: /^[0-9]{8,15}$/,
-            message: "Enter a valid phone number",
-          },
-        })}
-        className={errors.phone ? "input input-error" : "input"}
-        placeholder=" 0987654321"
-      />
-      {errors.phone && <p className="error-message">{errors.phone.message}</p>}
+        <div className={styles.inputGroup}>
+          <label>Email Address</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="you@coffee.com"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-      <button type="submit">Submit</button>
-    </form>
+        <div className={styles.inputGroup}>
+          <label>Password</label>
+          <div className={styles.passwordField}>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="••••••••"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <button
+              type="button"
+              className={styles.toggleBtn}
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? '🙈' : '👁️'}
+            </button>
+          </div>
+        </div>
+
+
+      
+
+        <button type="submit" className={styles.loginBtn}>
+          Login
+        </button>
+
+        <p className={styles.redirectText}>
+          Don’t have an account? <a href="/register">Register here</a>
+        </p>
+      </form>
+    </div>
   );
 };
 
 export default Login;
-

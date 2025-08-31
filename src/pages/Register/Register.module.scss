@@ -1,34 +1,39 @@
- $coffee: #6f4e37;
-    $coffee-dark: #4b2e1e;
-    $bg: #f2f0ed;
-    $white: #ffffff;
-.loginWrapper {
+$coffee: #6f4e37;
+$coffee-dark: #4b2e1e;
+$bg: #f2f0ed;
+$white: #ffffff;
+
+.registerWrapper {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #e8ddd3, #d1c4b2);
+  background: linear-gradient(120deg, #f2e8dc, #dbcaba);
   font-family: 'Segoe UI', sans-serif;
 }
 
-.loginBox {
-  background: rgba($white, 0.95);
+.registerBox {
+  background: rgba($white, 0.97);
   padding: 3rem;
   border-radius: 18px;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 460px;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 }
 
+.logo {
+  width: 60px;
+  margin: 0 auto 1rem auto;
+}
 
 .title {
   font-size: 1.6rem;
   text-align: center;
   color: $coffee;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .inputGroup {
@@ -74,9 +79,33 @@
   }
 }
 
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
 
+  input[type='checkbox'] {
+    accent-color: $coffee;
+    width: 1rem;
+    height: 1rem;
+  }
 
-.loginBtn {
+  label {
+    color: #555;
+
+    a {
+      color: $coffee;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.registerBtn {
   background-color: $coffee;
   color: $white;
   padding: 0.85rem;
@@ -105,4 +134,3 @@
     }
   }
 }
-

@@ -8,5 +8,15 @@
 
 .home {
     padding: 32px;
-    background-color:var(--background);
+    background-color: var(--background);
+}
+
+input {padding: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 25px;
+    text-align: center;
+
+
 }
