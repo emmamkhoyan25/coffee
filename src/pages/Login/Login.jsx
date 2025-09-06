@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Login.module.scss';
+import { useNavigate } from 'react-router';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ const Login = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-
+const navigate=useNavigate();
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -79,7 +80,7 @@ const Login = () => {
 
       
 
-        <button type="submit" className={styles.loginBtn}>
+        <button type="submit" className={styles.loginBtn}   onClick={()=> {navigate(`/cart`)}}> 
           Login
         </button>
 
