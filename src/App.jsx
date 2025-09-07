@@ -3,7 +3,7 @@ import "./App.scss"
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Welcome from './pages/Welcome/Welcome'
 import Order from './pages/Order/Order'
-import Home from './pages/home/Home'
+import Home from './pages/Home/Home'
 import Detail from './pages/Detail/Detail'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
