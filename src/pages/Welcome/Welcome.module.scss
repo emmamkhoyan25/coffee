@@ -6,6 +6,7 @@
     justify-content: center;
     gap: 30px;
     padding: 20px;
+    align-items: center;
 
     h2 {
         color: white;
@@ -13,7 +14,7 @@
         flex-direction: column;
         justify-content: flex-end;
         text-align: center;
-        font-size: 45px;
+        font-size: 26px;
         font-weight: 600;
         background-color: black;
         padding-bottom: 40px;
@@ -23,7 +24,7 @@
     p {
         font-family: Sora;
         font-weight: 400;
-        font-size:35px;
+        font-size:16px;
         text-align: center;
         color: gray;
         background-color: black;
@@ -47,9 +48,9 @@
 
     }
 
-    img {
+    img {max-width: 400px;
         width: 100%;
-        max-height:70dvh;
+        max-height:45dvh;
         object-fit: cover;
         object-position: bottom;
     }
