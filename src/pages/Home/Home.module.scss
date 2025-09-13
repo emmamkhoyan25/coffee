@@ -1,22 +1,78 @@
-.coffee_grid {
-
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .home {
-    padding: 32px;
-    background-color: var(--background);
+  padding: 32px 16px;
+  background-color: var(--background, #f9f9f9);
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
 }
 
-input {padding: 16px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.inputWrapper {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+
+  input {
+    padding: 16px 45px 16px 20px;
     width: 100%;
     border-radius: 25px;
-    text-align: center;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: 0.3s ease all;
 
+    &:focus {
+      border-color: #c67c4e;
+      outline: none;
+      box-shadow: 0 0 8px rgba(198, 124, 78, 0.4);
+    }
+  }
 
+  .enterIcon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 18px;
+    pointer-events: none;
+    opacity: 0.5;
+    animation: blink 1.5s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
 }
+.coffee_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 20px;
+}
+
+.wideItem {
+  grid-column: span 2;
+}
+
+.narrowItem {
+  grid-column: span 1;
+}
+
+
+
