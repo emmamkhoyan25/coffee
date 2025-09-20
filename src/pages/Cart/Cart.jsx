@@ -1,29 +1,48 @@
 import styles from './Cart.module.scss';
+import { useCart } from '../../context/CartContext';
 
-const Cart = ({ cart }) => {
- 
+
+const Cart = () => {
+  const { cart, removeFromCart } = useCart();
+
+
   return (
     <div className={styles.container}>
-      <h1>Coffee Basket</h1>
+      <h1>Coffee Basket 🧺</h1>
+
       {cart.length === 0 ? (
-        <p className={styles["empty-message"]}>the basket is empty։</p>
+        <p className={styles.emptyMessage}>Your basket is empty 😕</p>
       ) : (
         <>
-          <ul>
-            {cart.map((item, idx) => (
-              <li key={idx}>
-                <span>{item.name} - {item.size}</span>
-                <span>${item.price}</span> 
+          <ul className={styles.cartList}>
+            {cart.map((item) => (
+              <li key={item.id} className={styles.cartItem}>
+                <div>
+                  <span className={styles.name}>{item.name}</span>
+                  {item.size && <span className={styles.size}> ({item.size})</span>}
+                </div>
+                <div>
+                  <span className={styles.price}>${item.price}</span>
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className={styles.removeBtn}
+                  >
+                    Remove
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
+
           <div className={styles.total}>
-          total amount: $
-            {cart.reduce((sum, item) => sum + (item.price || 0), 0)}
+            <strong>Total amount:</strong> $
+            {cart.reduce((sum, item) => sum + (item.price || 0), 0).toFixed(2)}
           </div>
         </>
       )}
     </div>
   );
 };
+
 export default Cart;
+

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Register.module.scss';
-
+import { useNavigate, Link } from 'react-router-dom';
 const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -10,6 +10,8 @@ const Register = () => {
     security: '',
     agree: false,
   });
+
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -34,7 +36,8 @@ const Register = () => {
     }
 
     console.log('Registering:', formData);
-   
+
+    navigate('/cart'); 
   };
 
   return (
@@ -126,10 +129,10 @@ const Register = () => {
         <button type="submit" className={styles.registerBtn}>
           Register
         </button>
-
-        <p className={styles.redirectText}>
-          Already have an account? <a href="/login">Login here</a>
-        </p>
+ <p className={styles.redirectText}>
+      Already have an account? <Link to="/login">Login here</Link>
+    </p>
+        
       </form>
     </div>
   );
