@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
-import { coffees } from '../../datas/Coffees'
-import styles from './Home.module.scss'
-import CoffeeCard from '../../components/CoffeeCard/CoffeeCard'
+import React, { useState } from "react";
+import { coffees } from "../../datas/Coffees";
+import styles from "./Home.module.scss";
+import CoffeeCard from "../../components/CoffeeCard/CoffeeCard";
+import { useNavigate } from "react-router";
 
 const Home = () => {
-  const [search, setSearch] = useState('')
-  const [coffeesArr, setCoffeesArr] = useState(coffees)
-
+  const [search, setSearch] = useState("");
+  const [coffeesArr, setCoffeesArr] = useState(coffees);
+  const navigate = useNavigate();
   const handleSearch = () => {
     const filtered = coffees.filter((coffee) =>
       coffee.name.toLowerCase().includes(search.toLowerCase())
-    )
-    setCoffeesArr(filtered)
-  }
+    );
+    setCoffeesArr(filtered);
+  };
 
   return (
     <div className={`container ${styles.home}`}>
@@ -23,12 +24,12 @@ const Home = () => {
           placeholder="Search coffee... ⏎"
           onChange={(e) => setSearch(e.target.value)}
           onKeyDown={(e) => {
-            if (e.code === 'Enter') handleSearch()
+            if (e.code === "Enter") handleSearch();
           }}
         />
         <span className={styles.enterIcon}>⏎</span>
       </div>
-
+      <button onClick={() => navigate("/cart")}>go to cart</button>
       <div className={styles.coffee_grid}>
         {coffeesArr.length > 0 ? (
           coffeesArr.map((coffee, i) => (
@@ -39,7 +40,7 @@ const Home = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

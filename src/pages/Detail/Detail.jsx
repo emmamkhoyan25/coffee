@@ -19,7 +19,7 @@ const Detail = ({ isLoggedIn }) => {
   }, []);
 
   const handleAddToCart = () => {
-    if (!isLoggedIn) {
+    if (localStorage.getItem("user") === null) {
       navigate("/login");
       return;
     }
@@ -51,6 +51,7 @@ const Detail = ({ isLoggedIn }) => {
 
   return (
     <div className="container">
+      <button onClick={() => navigate(-1)}>go back</button>
       <div className={styles.detail}>
         <img src={coffee.img} alt={coffee.name} />
         <h1>{coffee.name}</h1>

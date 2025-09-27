@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import styles from './Login.module.scss';
-import { Link, useNavigate } from 'react-router';
+import React, { useState } from "react";
+import styles from "./Login.module.scss";
+import { Link, useNavigate } from "react-router";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    security: '',
+    name: "",
+    email: "",
+    password: "",
+    security: "",
     remember: false,
   });
 
@@ -17,14 +17,13 @@ const Login = () => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-
+    localStorage.setItem("user", JSON.stringify(formData));
   };
 
   return (
@@ -60,7 +59,7 @@ const Login = () => {
           <label>Password</label>
           <div className={styles.passwordField}>
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               name="password"
               placeholder="••••••••"
               value={formData.password}
@@ -72,20 +71,23 @@ const Login = () => {
               className={styles.toggleBtn}
               onClick={() => setShowPassword((prev) => !prev)}
             >
-              {showPassword ? '🙈' : '👁️'}
+              {showPassword ? "🙈" : "👁️"}
             </button>
           </div>
         </div>
 
-
-
-
-        <button type="submit" className={styles.loginBtn} onClick={() => { navigate(`/cart`) }}>
+        <button
+          type="submit"
+          className={styles.loginBtn}
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
           Login
         </button>
 
         <p className={styles.redirectText}>
-          Don’t have an account?  <Link to="/register">Register here</Link>
+          Don’t have an account? <Link to="/register">Register here</Link>
         </p>
       </form>
     </div>
