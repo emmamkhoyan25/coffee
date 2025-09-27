@@ -4,13 +4,15 @@ import { coffees } from "../../datas/Coffees";
 import StarIcons from "../../Icons/StarIcons";
 import PlusIcon from "../../Icons/PlusIcon";
 import styles from "./Detail.module.scss";
+import { useCart } from "../../context/CartContext"; // ✅ IMPORT CONTEXT
 
-const Detail = ({ isLoggedIn, cart, setCart }) => {
+const Detail = ({ isLoggedIn }) => {
   const { i } = useParams();
   const coffee = coffees[i];
   const navigate = useNavigate();
 
   const [selectedSize, setSelectedSize] = useState(null);
+  const { cart, addToCart } = useCart(); // ✅ CONTEXT
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,19 +23,30 @@ const Detail = ({ isLoggedIn, cart, setCart }) => {
       navigate("/login");
       return;
     }
+
     if (!selectedSize) {
       alert("Խնդրում ենք ընտրել չափսը։");
       return;
     }
+
     const alreadyInCart = cart.find(
       (item) => item.name === coffee.name && item.size === selectedSize
     );
+
     if (alreadyInCart) {
       alert("Սուրճը այդ չափսով արդեն զամբյուղում է։");
       return;
     }
-    setCart([...cart, { ...coffee, size: selectedSize }]);
-    alert("Սուրճը ավելացվեց զամբյուղում։");
+
+    const itemToAdd = {
+      id: coffee.id,
+      name: coffee.name,
+      price: coffee.price,
+      size: selectedSize,
+    };
+
+    addToCart(itemToAdd); // ✅ CONTEXT-ի addToCart
+    alert("✅ Սուրճը ավելացվեց զամբյուղում։");
   };
 
   return (
@@ -48,6 +61,7 @@ const Detail = ({ isLoggedIn, cart, setCart }) => {
         </h4>
         <h3>Description</h3>
         <p>{coffee.description}</p>
+
         <h3>Size</h3>
         <div className={styles.sizes}>
           {coffee.size.map((s, idx) => (
@@ -60,6 +74,7 @@ const Detail = ({ isLoggedIn, cart, setCart }) => {
             </button>
           ))}
         </div>
+
         <h3>Put in a basket</h3>
         <button onClick={handleAddToCart}>
           <PlusIcon />
